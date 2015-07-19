@@ -28,10 +28,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sharedPreferenceHelper=new SharedPreferenceHelper(getApplicationContext());
-       // sp = getPreferences(MODE_PRIVATE);    ///This shared preference object must be maintained between saving and retrieving datas.
-        //spe = sp.edit();//shared preference editor is initiated to handle storing datas in the sharedpreference
-        textEntered= sharedPreferenceHelper.getData(STRINGVALUE);
-                //sp.getString(STRINGVALUE,"NO VALUE STORED YET");//in an application through this line of code one can know if the application has been used before or it is the first time
+         textEntered= sharedPreferenceHelper.getString(STRINGVALUE);
+
         enteredText=(EditText)findViewById(R.id.editText);
         saveButton=(Button)findViewById(R.id.saveButton);
         display=(TextView)findViewById(R.id.showtext);
@@ -52,10 +50,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         ///////////////////responds when the clear button is clicked////////////////////////
         if(v==clearButton)
         {
-            //spe.clear();
-           // spe.commit();////when clear is used it must be committed
+
             sharedPreferenceHelper.removeData();
-            display.setText(sharedPreferenceHelper.getData(STRINGVALUE));
+            display.setText(sharedPreferenceHelper.getString(STRINGVALUE));
 
 
 
@@ -64,8 +61,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         ///////////////////responds when the save button is clicked////////////////////////
         else
         {
-            //spe.putString(STRINGVALUE,enteredText.getText().toString() );
-           // spe.commit();
+
             sharedPreferenceHelper.setData(STRINGVALUE,enteredText.getText().toString());
 
             display.setText(enteredText.getText().toString());
@@ -103,34 +99,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         return super.onOptionsItemSelected(item);
     }
-private class UsingPreference
-{
-public void saveDatas(int input){}
-public void saveDatas(String input){}
-public void saveDatas(Long input){}
-public void saveDatas(char input){}
 
-
-public void clearDatas(String key)
-{
-
-}
-public int collectDatas(String key)
-{
-    int value=0;
- return value;
-}
-
-
-    public Long collectDatas()
-    {
-        Long value=0L;
-        return value;
-    }
-
-
-
-}
 }
 
 
